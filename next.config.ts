@@ -1,14 +1,14 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  output: "export",
+  trailingSlash: true,
   experimental: {
     agentFeedback: true,
   },
-  cacheComponents: true,
   images: {
     qualities: [75, 90],
   },
-  partialPrefetching: true,
   turbopack: {
     rules: {
       "*.css": {

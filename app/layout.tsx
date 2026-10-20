@@ -1,57 +1,16 @@
 import type { Metadata } from "next";
-import {
-  Cormorant_Garamond,
-  Grape_Nuts,
-  Playfair_Display,
-  Plus_Jakarta_Sans,
-  Xanh_Mono,
-} from "next/font/google";
-import { issue } from "./content";
+import { Cormorant_Garamond, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
-  subsets: ["latin", "vietnamese"],
-  style: ["normal", "italic"],
-});
-
-const cormorant = Cormorant_Garamond({
-  variable: "--font-cormorant",
-  subsets: ["latin", "vietnamese"],
-  style: ["normal", "italic"],
-});
-
-const jakarta = Plus_Jakarta_Sans({
-  variable: "--font-jakarta",
-  subsets: ["latin", "vietnamese"],
-});
-
-const xanhMono = Xanh_Mono({
-  variable: "--font-xanh",
-  subsets: ["latin", "vietnamese"],
-  weight: "400",
-});
-
-const grapeNuts = Grape_Nuts({
-  variable: "--font-grape",
-  subsets: ["latin", "vietnamese"],
-  weight: "400",
-});
+const serif = Cormorant_Garamond({ variable: "--font-serif", subsets: ["latin", "vietnamese"], weight: ["400", "500", "600"], style: ["normal", "italic"], display: "swap" });
+const sans = Plus_Jakarta_Sans({ variable: "--font-sans", subsets: ["latin", "vietnamese"], weight: ["400", "500"], display: "swap" });
 
 export const metadata: Metadata = {
-  title: `${issue.masthead} — The October Issue · ${issue.date}`,
-  description: `Ấn bản đặc biệt nhân ngày Phụ nữ Việt Nam 20/10, dành tặng ${issue.herName}.`,
+  title: "Dành riêng cho Phương · 20/10",
+  description: "Một khu vườn nhỏ, một lá thư, và những điều anh muốn gửi đến em.",
+  robots: { index: false, follow: false },
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
-  return (
-    <html
-      lang="vi"
-      data-scroll-behavior="smooth"
-      data-gate="closed"
-      className={`${playfair.variable} ${cormorant.variable} ${jakarta.variable} ${xanhMono.variable} ${grapeNuts.variable} h-full antialiased`}
-    >
-      <body className="min-h-full">{children}</body>
-    </html>
-  );
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return <html lang="vi" className={`${serif.variable} ${sans.variable}`}><body>{children}</body></html>;
 }
